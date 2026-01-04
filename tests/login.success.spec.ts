@@ -3,11 +3,8 @@ import loginOrSignup from '../pages/login.singup.page';
 import accountInformation from '../pages/account.information.page';
 import accountCreatedDeleted from '../pages/account.created.deleted.page';
 import home from '../pages/home.page';
+import loginData from '../testdata/login.testdata.json';
 
-
-let userName: string = "Srinu Kusumanchi";
-let email: string = "srinukusumanchi@gmail.com"
-let password: string = "Kanakavaram0386#";
 
 test.beforeEach(async ({ page }) => {
   await page.goto("https://automationexercise.com/login");
@@ -23,28 +20,28 @@ test("Login User with correct email and password", async ({ page }) => {
   // verify 'Login to your account' is visible
   await expect(await loginSignupPage.verifyLoginToYourAccount()).toBeVisible();
   // Enter correct email address and password
-  await loginSignupPage.enterName(userName);
-  await loginSignupPage.enterEmailAddress(email);
+  await loginSignupPage.enterName(loginData.validLogin.username);
+  await loginSignupPage.enterEmailAddress(loginData.validLogin.email);
   await loginSignupPage.clickSignUp();
 
   // Enter Account Information
-  await accountInformationPage.selectTitle("Mr.");
-  await accountInformationPage.enterPassword(password);
-  await accountInformationPage.selectDay("15");
-  await accountInformationPage.selectMonth("June");
-  await accountInformationPage.selectYear("1994");
+  await accountInformationPage.selectTitle(loginData.validLogin.validRegistration.title);
+  await accountInformationPage.enterPassword(loginData.validLogin.password);
+  await accountInformationPage.selectDay(loginData.validLogin.validRegistration.dateOfBirth.day);
+  await accountInformationPage.selectMonth(loginData.validLogin.validRegistration.dateOfBirth.month);
+  await accountInformationPage.selectYear(loginData.validLogin.validRegistration.dateOfBirth.year);
 
   // Address Information
-  await accountInformationPage.enterFirstName("Srinu");
-  await accountInformationPage.enterLastName("Kusumanchi");
-  await accountInformationPage.enterCompany("Tangerine");
-  await accountInformationPage.enterAddress("1910");
-  await accountInformationPage.enterAddress2("80 Carabob");
-  await accountInformationPage.selectCountry("Canada");
-  await accountInformationPage.enterState("Ontario");
-  await accountInformationPage.enterCity("Scarborough");
-  await accountInformationPage.enterZipcode("M1T 3L9");
-  await accountInformationPage.enterMobile("4373221885");
+  await accountInformationPage.enterFirstName(loginData.validLogin.validRegistration.firstName);
+  await accountInformationPage.enterLastName(loginData.validLogin.validRegistration.lastName);
+  await accountInformationPage.enterCompany(loginData.validLogin.validRegistration.company);
+  await accountInformationPage.enterAddress(loginData.validLogin.validRegistration.address);
+  await accountInformationPage.enterAddress2(loginData.validLogin.validRegistration.address2);
+  await accountInformationPage.selectCountry(loginData.validLogin.validRegistration.country);
+  await accountInformationPage.enterState(loginData.validLogin.validRegistration.state);
+  await accountInformationPage.enterCity(loginData.validLogin.validRegistration.city);
+  await accountInformationPage.enterZipcode(loginData.validLogin.validRegistration.zipcode);
+  await accountInformationPage.enterMobile(loginData.validLogin.validRegistration.mobile);
   await accountInformationPage.clickCreateAccount();
 
   // Verify that 'ACCOUNT Created!' is visible
@@ -64,8 +61,8 @@ test("Login User with incorrect email and password", async ({ page }) => {
   // verify 'Login to your account' is visible
   await expect(await loginSignupPage.verifyLoginToYourAccount()).toBeVisible();
   // Enter In-correct email address and password
-  await loginSignupPage.enterEmailAddressLogin("Srinu@gmail.com");
-  await loginSignupPage.enterPassword("Password1234!");
+  await loginSignupPage.enterEmailAddressLogin(loginData.invalidLogin.email);
+  await loginSignupPage.enterPassword(loginData.invalidLogin.password);
   await loginSignupPage.clickLogin();
   // Verify Invalid User Name and Password
   expect(await loginSignupPage.getInvalidLoginMessage()).toEqual("Your email or password is incorrect!");
@@ -82,28 +79,28 @@ test("Logout user", async ({ page }) => {
   // verify 'Login to your account' is visible
   await expect(await loginSignupPage.verifyLoginToYourAccount()).toBeVisible();
   // Enter correct email address and password
-  await loginSignupPage.enterName(userName);
-  await loginSignupPage.enterEmailAddress(email);
+  await loginSignupPage.enterName(loginData.logoutUser.username);
+  await loginSignupPage.enterEmailAddress(loginData.logoutUser.email);
   await loginSignupPage.clickSignUp();
 
   // Enter Account Information
   await accountInformationPage.selectTitle("Mr.");
-  await accountInformationPage.enterPassword(password);
-  await accountInformationPage.selectDay("15");
-  await accountInformationPage.selectMonth("June");
-  await accountInformationPage.selectYear("1994");
+  await accountInformationPage.enterPassword(loginData.logoutUser.password);
+  await accountInformationPage.selectDay(loginData.logoutUser.validRegistration.dateOfBirth.day);
+  await accountInformationPage.selectMonth(loginData.logoutUser.validRegistration.dateOfBirth.month);
+  await accountInformationPage.selectYear(loginData.logoutUser.validRegistration.dateOfBirth.year);
 
   // Address Information
-  await accountInformationPage.enterFirstName("Srinu");
-  await accountInformationPage.enterLastName("Kusumanchi");
-  await accountInformationPage.enterCompany("Tangerine");
-  await accountInformationPage.enterAddress("1910");
-  await accountInformationPage.enterAddress2("80 Carabob");
-  await accountInformationPage.selectCountry("Canada");
-  await accountInformationPage.enterState("Ontario");
-  await accountInformationPage.enterCity("Scarborough");
-  await accountInformationPage.enterZipcode("M1T 3L9");
-  await accountInformationPage.enterMobile("4373221885");
+  await accountInformationPage.enterFirstName(loginData.logoutUser.validRegistration.firstName);
+  await accountInformationPage.enterLastName(loginData.logoutUser.validRegistration.lastName);
+  await accountInformationPage.enterCompany(loginData.logoutUser.validRegistration.company);
+  await accountInformationPage.enterAddress(loginData.logoutUser.validRegistration.address);
+  await accountInformationPage.enterAddress2(loginData.logoutUser.validRegistration.address2);
+  await accountInformationPage.selectCountry(loginData.logoutUser.validRegistration.country);
+  await accountInformationPage.enterState(loginData.logoutUser.validRegistration.state);
+  await accountInformationPage.enterCity(loginData.logoutUser.validRegistration.city);
+  await accountInformationPage.enterZipcode(loginData.logoutUser.validRegistration.zipcode);
+  await accountInformationPage.enterMobile(loginData.logoutUser.validRegistration.mobile);
   await accountInformationPage.clickCreateAccount();
 
   // Verify that 'ACCOUNT Created!' is visible
@@ -118,11 +115,11 @@ test("Logout user", async ({ page }) => {
   // verify 'Login to your account' is visible
   await expect(await loginSignupPage.verifyLoginToYourAccount()).toBeVisible();
   // Enter correct email address and password
-  await loginSignupPage.enterEmailAddressLogin(email);
-  await loginSignupPage.enterPassword(password);
+  await loginSignupPage.enterEmailAddressLogin(loginData.logoutUser.email);
+  await loginSignupPage.enterPassword(loginData.logoutUser.password);
   await loginSignupPage.clickLogin();
   // Verify that 'Logged in as username' is visible
-  expect(await homePage.getLoggedInCustomerName(userName)).toContain(`Logged in as ${userName}`);
+  expect(await homePage.getLoggedInCustomerName(loginData.logoutUser.username)).toContain(`Logged in as ${loginData.logoutUser.username}`);
   // click 'Logout' button
   await homePage.clickLogout();
 
@@ -131,8 +128,8 @@ test("Logout user", async ({ page }) => {
 
 
    // Enter correct email address and password
-  await loginSignupPage.enterEmailAddressLogin(email);
-  await loginSignupPage.enterPassword(password);
+  await loginSignupPage.enterEmailAddressLogin(loginData.logoutUser.email);
+  await loginSignupPage.enterPassword(loginData.logoutUser.password);
   await loginSignupPage.clickLogin();
 
   // Delete Account

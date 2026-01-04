@@ -1,0 +1,53 @@
+{
+    "validLogin": {
+        "username": "Srinu Kusumanchi",
+        "email": "srinukusumanchi@gmail.com",
+        "password": "abcd1234#",
+        "validRegistration": {
+            "title": "Mr.",
+            "firstName": "Srinu",
+            "lastName": "Kusumanchi",
+            "dateOfBirth": {
+                "day": "8",
+                "month": "July",
+                "year": "1994"
+            },
+            "company": "Tangerine",
+            "address": "1910",
+            "address2": "80 Carabob",
+            "country": "Canada",
+            "state": "Ontario",
+            "city": "Scarborough",
+            "zipcode": "M1T 3L9",
+            "mobile": "4373221885"
+        }
+    },
+    "invalidLogin": {
+        "email": "Srinu@gmail.com",
+        "password": "Password1234!"
+    },
+    "logoutUser": {
+        "username": "Srinu K",
+        "email": "srinu1994@gmail.com",
+        "password": "Password23456$",
+        "validRegistration": {
+            "title": "Mr.",
+            "firstName": "Srinu",
+            "lastName": "Kusumanchi",
+            "dateOfBirth": {
+                "day": "1",
+                "month": "January",
+                "year": "1990"
+            },
+            "company": "Tangerine",
+            "address": "1910",
+            "address2": "80 Carabob",
+            "country": "Canada",
+            "state": "Ontario",
+            "city": "Scarborough",
+            "zipcode": "M1T 3L9",
+            "mobile": "4373211285"
+        }
+    }
+
+}
