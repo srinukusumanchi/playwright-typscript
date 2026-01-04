@@ -21,7 +21,7 @@ class accountCreatedDeleted {
         return this.accountCreated;
     }
 
-    async clickContinue() {
+    async clickContinue(): Promise<void> {
         return this.continueButton.click();
     }
 

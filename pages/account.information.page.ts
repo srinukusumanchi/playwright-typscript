@@ -47,7 +47,7 @@ class accountInformation {
     }
 
 
-    async selectTitle(title: string) {
+    async selectTitle(title: string): Promise<void> {
         if (title === 'Mr.') {
             await this.titleMr.check();
         } else if (title === 'Mrs.') {
@@ -57,15 +57,15 @@ class accountInformation {
         }
     }
 
-    async enterName(name: string) {
+    async enterName(name: string): Promise<void> {
         await this.name.fill(name);
     }
 
-    async enterEmail(emailAddress: string) {
+    async enterEmail(emailAddress: string): Promise<void> {
         await this.email.fill(emailAddress);
     }
 
-    async enterPassword(password: string) {
+    async enterPassword(password: string): Promise<void> {
         await this.password.fill(password);
     }
 
@@ -73,55 +73,55 @@ class accountInformation {
         await this.day.selectOption({ label: day });
     }
 
-    async selectMonth(month: string) {
+    async selectMonth(month: string): Promise<void> {
         await this.month.selectOption({ label: month });
     }
 
-    async selectYear(year: string) {
+    async selectYear(year: string): Promise<void> {
         await this.year.selectOption({ label: year });
     }
 
-    async enterFirstName(firstName: string) {
+    async enterFirstName(firstName: string): Promise<void> {
         await this.firstName.fill(firstName);
     }
 
-    async enterLastName(lastName: string) {
+    async enterLastName(lastName: string): Promise<void> {
         await this.lastName.fill(lastName);
     }
 
-    async enterCompany(company: string) {
+    async enterCompany(company: string): Promise<void> {
         await this.company.fill(company);
     }
 
-    async enterAddress(address: string) {
+    async enterAddress(address: string): Promise<void> {
         await this.address.fill(address);
     }
 
-    async enterAddress2(address2: string) {
+    async enterAddress2(address2: string): Promise<void> {
         await this.address2.fill(address2);
     }
 
-    async selectCountry(country: string) {
+    async selectCountry(country: string): Promise<void> {
         await this.country.selectOption({ label: country });
     }
 
-    async enterState(state: string) {
+    async enterState(state: string): Promise<void> {
         await this.state.fill(state);
     }
 
-     async enterCity(city: string) {
+    async enterCity(city: string): Promise<void> {
         await this.city.fill(city);
     }
 
-    async enterZipcode(zipcode: string) {
+    async enterZipcode(zipcode: string): Promise<void> {
         await this.zipcode.fill(zipcode);
     }
 
-    async enterMobile(mobilenumber: string) {
+    async enterMobile(mobilenumber: string): Promise<void> {
         await this.mobilenumber.fill(mobilenumber);
     }
 
-    async clickCreateAccount() {
+    async clickCreateAccount(): Promise<void> {
         await this.createAccount.click();
     }
 
