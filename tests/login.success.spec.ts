@@ -55,5 +55,90 @@ test("Login User with correct email and password", async ({ page }) => {
 
   // Verify that 'ACCOUNT DELETED!' is visible
   await expect(await accountCreatedDeletedPage.getAccountDeleted()).toBeVisible();
+});
+
+test("Login User with incorrect email and password", async ({ page }) => {
+  const loginSignupPage = new loginOrSignup(page);
+  // Verify that home page is visible successfully
+  expect(await loginSignupPage.getPageTitle()).toBe("Automation Exercise - Signup / Login");
+  // verify 'Login to your account' is visible
+  await expect(await loginSignupPage.verifyLoginToYourAccount()).toBeVisible();
+  // Enter In-correct email address and password
+  await loginSignupPage.enterEmailAddressLogin("Srinu@gmail.com");
+  await loginSignupPage.enterPassword("Password1234!");
+  await loginSignupPage.clickLogin();
+  // Verify Invalid User Name and Password
+  expect(await loginSignupPage.getInvalidLoginMessage()).toEqual("Your email or password is incorrect!");
+})
+
+
+test.only("Logout user", async ({ page }) => {
+  const loginSignupPage = new loginOrSignup(page);
+  const accountInformationPage = new accountInformation(page);
+  const accountCreatedDeletedPage = new accountCreatedDeleted(page);
+  const homePage = new home(page);
+  // Verify that home page is visible successfully
+  expect(await loginSignupPage.getPageTitle()).toBe("Automation Exercise - Signup / Login");
+  // verify 'Login to your account' is visible
+  await expect(await loginSignupPage.verifyLoginToYourAccount()).toBeVisible();
+  // Enter correct email address and password
+  await loginSignupPage.enterName(userName);
+  await loginSignupPage.enterEmailAddress(email);
+  await loginSignupPage.clickSignUp();
+
+  // Enter Account Information
+  await accountInformationPage.selectTitle("Mr.");
+  await accountInformationPage.enterPassword(password);
+  await accountInformationPage.selectDay("15");
+  await accountInformationPage.selectMonth("June");
+  await accountInformationPage.selectYear("1994");
+
+  // Address Information
+  await accountInformationPage.enterFirstName("Srinu");
+  await accountInformationPage.enterLastName("Kusumanchi");
+  await accountInformationPage.enterCompany("Tangerine");
+  await accountInformationPage.enterAddress("1910");
+  await accountInformationPage.enterAddress2("80 Carabob");
+  await accountInformationPage.selectCountry("Canada");
+  await accountInformationPage.enterState("Ontario");
+  await accountInformationPage.enterCity("Scarborough");
+  await accountInformationPage.enterZipcode("M1T 3L9");
+  await accountInformationPage.enterMobile("4373221885");
+  await accountInformationPage.clickCreateAccount();
+
+  // Verify that 'ACCOUNT Created!' is visible
+  await expect(await accountCreatedDeletedPage.getAccountCreated()).toBeVisible();
+  await accountCreatedDeletedPage.clickContinue();
+
+  // click 'Logout' button
+  await homePage.clickLogout();
+
+  // Verify that home page is visible successfully
+  expect(await loginSignupPage.getPageTitle()).toBe("Automation Exercise - Signup / Login");
+  // verify 'Login to your account' is visible
+  await expect(await loginSignupPage.verifyLoginToYourAccount()).toBeVisible();
+  // Enter correct email address and password
+  await loginSignupPage.enterEmailAddressLogin(email);
+  await loginSignupPage.enterPassword(password);
+  await loginSignupPage.clickLogin();
+  // Verify that 'Logged in as username' is visible
+  expect(await homePage.getLoggedInCustomerName(userName)).toContain(`Logged in as ${userName}`);
+  // click 'Logout' button
+  await homePage.clickLogout();
+
+  //Verify that user is navigated to login page
+  expect(await loginSignupPage.getPageTitle()).toBe("Automation Exercise - Signup / Login");
+
+
+   // Enter correct email address and password
+  await loginSignupPage.enterEmailAddressLogin(email);
+  await loginSignupPage.enterPassword(password);
+  await loginSignupPage.clickLogin();
+
+  // Delete Account
+  await homePage.clickDeleteAccount();
+
+  // Verify that 'ACCOUNT DELETED!' is visible
+  await expect(await accountCreatedDeletedPage.getAccountDeleted()).toBeVisible();
 
 })
