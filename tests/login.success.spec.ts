@@ -72,7 +72,7 @@ test("Login User with incorrect email and password", async ({ page }) => {
 })
 
 
-test.only("Logout user", async ({ page }) => {
+test("Logout user", async ({ page }) => {
   const loginSignupPage = new loginOrSignup(page);
   const accountInformationPage = new accountInformation(page);
   const accountCreatedDeletedPage = new accountCreatedDeleted(page);
