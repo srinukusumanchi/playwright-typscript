@@ -14,8 +14,9 @@ A concise guide for running and extending the Playwright test suite implemented 
 6. **Test Patterns & Page Objects**
 7. **Configuration Details**
 8. **Common Commands & Tips**
-9. **Extending Tests**
-10. **Contributing**
+9. **Allure Reporting**
+10. **Extending Tests**
+11. **Contributing**
 
 ---
 
@@ -123,7 +124,70 @@ Key config bits from `playwright.config.ts`:
 - View traces: after a failed test run, open the trace using the Playwright Trace Viewer (`npx playwright show-trace trace.zip`)
 - Generate a stable test run for CI: set `headless: true` and `workers: 1` in CI environment.
 
-## 9. Extending Tests ✍️
+## 9. Allure Reporting 📊
+Allure is a powerful test reporting tool that generates beautiful, interactive reports.
+
+### Setup Allure
+
+1. Install the Allure dependency:
+
+```bash
+npm i -D @playwright/test allure-playwright
+```
+
+2. Install Allure command-line tool globally (if not already installed):
+
+```bash
+npm install -g allure-commandline
+```
+
+### Generate Allure Report
+
+1. Run tests with Allure reporter:
+
+```bash
+npx playwright test --reporter=line,allure-playwright
+```
+
+> The `allure-playwright` reporter captures test data and saves it to the `allure-results` folder.
+
+2. Generate the Allure report from results:
+
+```bash
+allure generate ./allure-results --clean
+```
+
+> This creates the `allure-report` folder with an interactive HTML report.
+
+3. Open the Allure report in your browser:
+
+```bash
+allure open ./allure-report
+```
+
+### Convenience Commands
+
+You can also use npm scripts for these tasks:
+
+```bash
+npm run allure:generate   # Generate Allure report
+npm run allure:open       # Open Allure report
+```
+
+Or run everything in one flow:
+
+```bash
+npx playwright test --reporter=line,allure-playwright && allure generate ./allure-results --clean && allure open ./allure-report
+```
+
+The Allure report includes:
+- Detailed test execution logs
+- Test timelines and duration
+- Artifacts (screenshots, traces, videos)
+- Test history and trends
+- Failure analysis and categorization
+
+## 10. Extending Tests ✍️
 - Add a new page object in `pages/` for the page or UI part you need to interact with.
 - Keep selectors resilient: prefer `getByRole`, `getByLabel`, or data-test attributes over brittle CSS selectors.
 - Add test data to `testdata/` JSON and import it into specs.
@@ -144,7 +208,7 @@ test('example test', async ({ page }) => {
 });
 ```
 
-## 10. Contributing & Next Steps ✅
+## 11. Contributing & Next Steps ✅
 The project includes helpful npm scripts for convenience:
 - `npm test` — run full test suite
 - `npm run test:headed` — run tests in headed mode
