@@ -1,9 +1,10 @@
 import { test, expect } from '@playwright/test';
-import loginOrSignup from '../pages/login.singup.page';
-import accountInformation from '../pages/account.information.page';
-import accountCreatedDeleted from '../pages/account.created.deleted.page';
-import home from '../pages/home.page';
-import loginData from '../testdata/login.testdata.json';
+import loginOrSignup from '../../pages/login.singup.page';
+import accountInformation from '../../pages/account.information.page';
+import accountCreatedDeleted from '../../pages/account.created.deleted.page';
+import home from '../../pages/home.page';
+import loginData from '../../testdata/web/login.testdata.json';
+
 
 
 test.beforeEach(async ({ page }) => {
